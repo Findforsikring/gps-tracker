@@ -1,8 +1,6 @@
 const gpstracker = require("gpstracker");
 const port = 10000;
-const server = gpstracker.create().listen(port, function () {
-    console.log('listening on port', port);
-});
+const server = gpstracker.create().listen(port, '0.0.0.0');
 
 server.trackers.on("connected", function(tracker){
 
@@ -17,6 +15,6 @@ server.trackers.on("connected", function(tracker){
             position.lat, "lng", position.lng);
     });
 
-    tracker.trackEvery(10).seconds();
+    tracker.trackEvery(30).seconds();
 });
 
