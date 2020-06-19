@@ -1,6 +1,9 @@
 const gpstracker = require("gpstracker");
 const port = 10000;
-const server = gpstracker.create().listen(port, '0.0.0.0');
+const host = process.argv.slice(2)[0] || '0.0.0.0';
+const server = gpstracker.create().listen(port, host, 34, () => {
+    console.log('Listening on ', host, ' port ', port);
+});
 
 server.trackers.on("connected", function(tracker){
 
